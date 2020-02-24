@@ -1,16 +1,14 @@
-let lang = require('./en');
+let db = require('app/db');
 
 function User(name) {
     this.name = name;
     this.hello_arrow = () => {
-        console.log(lang.hello + ", " + this.name);
+        console.log(db.getPhrase("hello") + ", " + this.name);
     }
 }
 
 User.prototype.hello = function(who) {
-    console.log(lang.hello + ", " + who.name);
+    console.log(db.getPhrase("hello") + ", " + who.name);
 }
 
-exports.User = User;
-
-console.log(module);
+module.exports = User;

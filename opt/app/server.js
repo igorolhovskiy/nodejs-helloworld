@@ -1,9 +1,3 @@
-User = require('./modules/user').User
+app = require('./app');
 
-let vasya = new User("Vasya");
-let petya = new User("Petya");
-
-vasya.hello(petya);
-petya.hello_arrow();
-vasya.hello_arrow();
-vasya.hello({name: "World"});
+app.run();
