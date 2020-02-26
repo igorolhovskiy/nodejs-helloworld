@@ -25,13 +25,12 @@ function run() {
         vasya.hello({name: "World"});
     } catch (e) {
         if (e instanceof db.PhraseError) {
-            log("PhraseError");
-            log(util.inspect(e));
+            log(e);
         }
     }
 
     log("Run is ok!");
-    console.log(util.inspect(obj));
+    log(util.inspect(obj));
 }
 
 if (module.parent) {
