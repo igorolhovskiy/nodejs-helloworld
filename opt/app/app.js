@@ -18,11 +18,17 @@ function run() {
             return "This is an object obj"
         }
     }
-
-    vasya.hello(petya);
-    petya.hello_arrow();
-    vasya.hello_arrow();
-    vasya.hello({name: "World"});
+    try {
+        vasya.hello(petya);
+        petya.hello_arrow();
+        vasya.hello_arrow();
+        vasya.hello({name: "World"});
+    } catch (e) {
+        if (e instanceof db.PhraseError) {
+            log("PhraseError");
+            log(util.inspect(e));
+        }
+    }
 
     log("Run is ok!");
     console.log(util.inspect(obj));
