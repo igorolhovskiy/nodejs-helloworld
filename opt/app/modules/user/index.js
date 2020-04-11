@@ -9,7 +9,7 @@ function User(name) {
 }
 
 User.prototype.hello = who => {
-    log(db.getPhrase("hello_1") + ", " + who.name);
+    log(db.getPhrase("hello") + ", " + who.name);
 }
 
 module.exports = User;
