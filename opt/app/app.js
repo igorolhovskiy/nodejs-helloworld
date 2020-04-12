@@ -4,6 +4,7 @@ db.connect();
 
 User = require('app/modules/user');
 log = require('app/modules/logger')(module);
+EventEmitter = require('events').EventEmitter;
 
 util = require('util');
 
@@ -29,17 +30,35 @@ function run() {
     //     }
     // }
 
-    log("Run is ok!");
-    // log(util.inspect(obj));
+    // log("Run is ok!");
+    // // log(util.inspect(obj));
 
-    let needle = '15';
-    let haystack = [];
-    haystack.push(15);
-    if (haystack.includes(needle)) {
-        log("Needle in haystack!");
-    } else {
-        log("Needle NOT in haystack!");
-    }
+    // let needle = '15';
+    // let haystack = [];
+    // haystack.push(15);
+    // if (haystack.includes(needle)) {
+    //     log("Needle in haystack!");
+    // } else {
+    //     log("Needle NOT in haystack!");
+    // }
+
+    let server = new EventEmitter;
+
+    server.on('request', request => {
+        request.approved = true;
+    });
+
+    server.on('request', request => {
+        log(request);
+    });
+
+    server.emit('request', {from: "Vasya"});
+    server.emit('request', {from: "Petya"});
+
+    server.on('error', () => log('EventEmitter error captured'));
+
+    server.emit('error');
+
 }
 
 if (module.parent) {

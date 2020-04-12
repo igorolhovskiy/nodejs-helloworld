@@ -6,6 +6,7 @@ function PhraseError(message) {
     Error.captureStackTrace(this, PhraseError);
 }
 util.inherits(PhraseError, Error);
+PhraseError.prototype.name = 'PhraseError';
 
 exports.connect = () => {
     phrases = require('app/lang/en');
